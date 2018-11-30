@@ -18,7 +18,7 @@ import id.hasaneljabir.footballzone.fragment.match.MatchContract
 import id.hasaneljabir.footballzone.rest.FootballApiService
 import id.hasaneljabir.footballzone.rest.FootballRest
 import id.hasaneljabir.footballzone.utils.AppSchedulerProvider
-import kotlinx.android.synthetic.main.fragment_upcoming_match.*
+import kotlinx.android.synthetic.main.fragment_next_match.*
 
 class NextMatchFragment : Fragment(), MatchContract.View {
     lateinit var presenter: NextMatchPresenter
@@ -26,21 +26,21 @@ class NextMatchFragment : Fragment(), MatchContract.View {
     private var matchLists: MutableList<Event> = mutableListOf()
 
     override fun hideLoading() {
-        mainProgressBar.hide()
-        rvFootball.visibility = View.VISIBLE
+        progressBar.hide()
+        rvNextMatch.visibility = View.VISIBLE
     }
 
     override fun showLoading() {
-        mainProgressBar.show()
-        rvFootball.visibility = View.INVISIBLE
+        progressBar.show()
+        rvNextMatch.visibility = View.INVISIBLE
     }
 
     override fun displayFootballMatch(matchList: List<Event>) {
         matchLists.clear()
         matchLists.addAll(matchList)
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rvFootball.layoutManager = layoutManager
-        rvFootball.adapter = MatchAdapter(matchList, context)
+        rvNextMatch.layoutManager = layoutManager
+        rvNextMatch.adapter = MatchAdapter(matchList, context)
     }
 
     override fun onCreateView(
@@ -48,7 +48,7 @@ class NextMatchFragment : Fragment(), MatchContract.View {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_upcoming_match, container, false)
+        return inflater.inflate(R.layout.fragment_next_match, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

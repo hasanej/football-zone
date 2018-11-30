@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.main.MainActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".activity.main.MainActivity">
 
     <Spinner
         android:id="@+id/spinnerMatch"
@@ -14,7 +14,7 @@
     </Spinner>
 
     <ProgressBar
-        android:id="@+id/mainProgressBar"
+        android:id="@+id/progressBar"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_centerInParent="true"/>
@@ -22,7 +22,7 @@
     <android.support.v7.widget.RecyclerView
         android:layout_below="@id/spinnerMatch"
         android:layout_marginTop="@dimen/small_margin_8"
-        android:id="@+id/rvFootball"
+        android:id="@+id/rvNextMatch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

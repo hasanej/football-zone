@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_players.*
 class PlayerFragment : Fragment(), PlayerContract.View {
 
     private var listPlayer: MutableList<Player> = mutableListOf()
-    lateinit var mPresenter: PlayerContract.Presenter
+    lateinit var presenter: PlayerContract.Presenter
 
     override fun showLoading() {
         playerProgressbar.show()
@@ -45,7 +45,6 @@ class PlayerFragment : Fragment(), PlayerContract.View {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_players, container, false)
     }
 
@@ -55,13 +54,13 @@ class PlayerFragment : Fragment(), PlayerContract.View {
         val service = FootballApiService.getClient().create(FootballRest::class.java)
         val request = PlayersRepositoryImpl(service)
         val scheduler = AppSchedulerProvider()
-        mPresenter = PlayerPresenter(this, request, scheduler)
-        mPresenter.getAllPlayer(team?.idTeam)
+        presenter = PlayerPresenter(this, request, scheduler)
+        presenter.getAllPlayer(team?.idTeam)
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mPresenter.onDestroy()
+        presenter.onDestroy()
     }
 }
