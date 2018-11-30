@@ -29,8 +29,10 @@ class MatchAdapter(val eventList: List<Event>, val context: Context?) :
         fun bind(event: Event) {
             if (event.intHomeScore == null) {
                 itemView.tvDate.setTextColor(itemView.context.resources.getColor(R.color.colorDateNextMatch))
+                itemView.tvTime.setTextColor(itemView.context.resources.getColor(R.color.colorDateNextMatch))
             }
             itemView.tvDate.text = event.dateEvent?.let { DateHelper.formatDateToMatch(it) }
+            itemView.tvTime.text = event.strTime.take(5)
             itemView.tvNameHome.text = event.strHomeTeam
             itemView.tvScoreHome.text = event.intHomeScore
             itemView.tvNameAway.text = event.strAwayTeam

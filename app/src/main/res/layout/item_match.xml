@@ -27,6 +27,14 @@
                 android:id="@+id/tvDate"
                 android:text="@string/empty"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDateLastMatch"
+                android:layout_gravity="center"
+                android:id="@+id/tvTime"
+                android:text="@string/empty"/>
+
             <View
                 android:layout_width="50dp"
                 android:layout_height="1dp"
