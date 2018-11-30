@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import id.hasaneljabir.footballzone.R
 import id.hasaneljabir.footballzone.entity.player.Player
-import id.hasaneljabir.footballzone.feature.playerdetail.PlayerDetailActivity
+import id.hasaneljabir.footballzone.activity.playerDetail.PlayerDetailActivity
 
 import kotlinx.android.synthetic.main.item_players.view.*
 import org.jetbrains.anko.startActivity

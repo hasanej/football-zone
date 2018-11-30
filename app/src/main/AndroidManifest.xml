@@ -28,14 +28,14 @@
                 android:name=".activity.eventDetail.EventDetailActivity"
                 android:parentActivityName="id.hasaneljabir.footballzone.activity.main.MainActivity" />
         <activity
-                android:name=".feature.teamdetail.TeamDetailActivity"
+                android:name="id.hasaneljabir.footballzone.activity.teamDetail.TeamDetailActivity"
                 android:parentActivityName="id.hasaneljabir.footballzone.activity.main.MainActivity"
                 android:theme="@style/AppTheme.NoActionBar" />
         <activity
-                android:name=".feature.playerdetail.PlayerDetailActivity"
-                android:parentActivityName=".feature.teamdetail.TeamDetailActivity"
+                android:name="id.hasaneljabir.footballzone.activity.playerDetail.PlayerDetailActivity"
+                android:parentActivityName="id.hasaneljabir.footballzone.activity.teamDetail.TeamDetailActivity"
                 android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".feature.searchmatches.SearchMatchActivity"
+        <activity android:name="id.hasaneljabir.footballzone.activity.searchMatch.SearchMatchActivity"
                   android:parentActivityName="id.hasaneljabir.footballzone.activity.main.MainActivity"/>
     </application>
 

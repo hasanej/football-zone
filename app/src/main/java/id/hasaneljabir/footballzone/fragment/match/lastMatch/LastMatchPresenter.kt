@@ -1,7 +1,7 @@
 package id.hasaneljabir.footballzone.fragment.match.lastMatch
 
 import id.hasaneljabir.footballzone.entity.event.EventResponse
-import id.hasaneljabir.footballzone.entity.repository.MatchRepositoryImpl
+import id.hasaneljabir.footballzone.entity.repository.match.MatchRepositoryImplementation
 import id.hasaneljabir.footballzone.fragment.match.MatchContract
 import id.hasaneljabir.footballzone.utils.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
@@ -10,7 +10,7 @@ import java.util.*
 
 class LastMatchPresenter(
     val view: MatchContract.View,
-    val matchRepositoryImpl: MatchRepositoryImpl,
+    val matchRepositoryImplementation: MatchRepositoryImplementation,
     val scheduler: SchedulerProvider
 ) : MatchContract.Presenter {
 
@@ -19,7 +19,7 @@ class LastMatchPresenter(
     override fun getFootballMatchData(leagueName: String) {
         view.showLoading()
         compositeDisposable.add(
-            matchRepositoryImpl.getFootballMatch(leagueName)
+            matchRepositoryImplementation.getFootballMatch(leagueName)
                 .observeOn(scheduler.ui())
                 .subscribeOn(scheduler.io())
                 .subscribeWith(object : ResourceSubscriber<EventResponse>() {

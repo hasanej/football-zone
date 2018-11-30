@@ -10,13 +10,13 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import id.hasaneljabir.footballzone.R
 import id.hasaneljabir.footballzone.adapter.MatchAdapter
+import id.hasaneljabir.footballzone.api.ApiClient
+import id.hasaneljabir.footballzone.api.ApiService
 import id.hasaneljabir.footballzone.entity.event.Event
-import id.hasaneljabir.footballzone.entity.repository.MatchRepositoryImpl
+import id.hasaneljabir.footballzone.entity.repository.match.MatchRepositoryImplementation
 import id.hasaneljabir.footballzone.extensions.hide
 import id.hasaneljabir.footballzone.extensions.show
 import id.hasaneljabir.footballzone.fragment.match.MatchContract
-import id.hasaneljabir.footballzone.rest.FootballApiService
-import id.hasaneljabir.footballzone.rest.FootballRest
 import id.hasaneljabir.footballzone.utils.AppSchedulerProvider
 import kotlinx.android.synthetic.main.fragment_next_match.*
 
@@ -53,8 +53,8 @@ class NextMatchFragment : Fragment(), MatchContract.View {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val service = FootballApiService.getClient().create(FootballRest::class.java)
-        val request = MatchRepositoryImpl(service)
+        val service = ApiClient.getClient().create(ApiService::class.java)
+        val request = MatchRepositoryImplementation(service)
         val scheduler = AppSchedulerProvider()
         presenter = NextMatchPresenter(this, request, scheduler)
         presenter.getFootballMatchData()

@@ -15,11 +15,11 @@ import com.bumptech.glide.request.RequestOptions
 import id.hasaneljabir.footballzone.R
 import id.hasaneljabir.footballzone.entity.db.FavoriteEvent
 import id.hasaneljabir.footballzone.entity.event.Event
-import id.hasaneljabir.footballzone.entity.repository.LocalRepositoryImpl
-import id.hasaneljabir.footballzone.entity.repository.TeamRepositoryImpl
+import id.hasaneljabir.footballzone.entity.repository.local.LocalRepositoryImplementation
+import id.hasaneljabir.footballzone.entity.repository.team.TeamRepositoryImplementation
 import id.hasaneljabir.footballzone.entity.team.Team
-import id.hasaneljabir.footballzone.rest.FootballApiService
-import id.hasaneljabir.footballzone.rest.FootballRest
+import id.hasaneljabir.footballzone.api.ApiClient
+import id.hasaneljabir.footballzone.api.ApiService
 import id.hasaneljabir.footballzone.utils.CalendarHelper
 import id.hasaneljabir.footballzone.utils.DateHelper
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -52,9 +52,10 @@ class EventDetailActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        val service = FootballApiService.getClient().create(FootballRest::class.java)
-        val request = TeamRepositoryImpl(service)
-        val localRepo = LocalRepositoryImpl(applicationContext)
+        val service = ApiClient.getClient().create(ApiService::class.java)
+        val request = TeamRepositoryImplementation(service)
+        val localRepo =
+            LocalRepositoryImplementation(applicationContext)
         presenterEventDetail =
                 EventDetailPresenter(this, request, localRepo)
 

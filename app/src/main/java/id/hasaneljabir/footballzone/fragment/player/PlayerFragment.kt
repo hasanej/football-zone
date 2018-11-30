@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import id.hasaneljabir.footballzone.R
 import id.hasaneljabir.footballzone.adapter.PlayerAdapter
+import id.hasaneljabir.footballzone.api.ApiClient
+import id.hasaneljabir.footballzone.api.ApiService
 import id.hasaneljabir.footballzone.entity.player.Player
-import id.hasaneljabir.footballzone.entity.repository.PlayersRepositoryImpl
+import id.hasaneljabir.footballzone.entity.repository.player.PlayerRepositoryImplementation
 import id.hasaneljabir.footballzone.entity.team.Team
 import id.hasaneljabir.footballzone.extensions.hide
 import id.hasaneljabir.footballzone.extensions.show
-import id.hasaneljabir.footballzone.rest.FootballApiService
-import id.hasaneljabir.footballzone.rest.FootballRest
 import id.hasaneljabir.footballzone.utils.AppSchedulerProvider
 import kotlinx.android.synthetic.main.fragment_players.*
 
@@ -51,8 +51,8 @@ class PlayerFragment : Fragment(), PlayerContract.View {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val team: Team? = arguments?.getParcelable("teams")
-        val service = FootballApiService.getClient().create(FootballRest::class.java)
-        val request = PlayersRepositoryImpl(service)
+        val service = ApiClient.getClient().create(ApiService::class.java)
+        val request = PlayerRepositoryImplementation(service)
         val scheduler = AppSchedulerProvider()
         presenter = PlayerPresenter(this, request, scheduler)
         presenter.getAllPlayer(team?.idTeam)

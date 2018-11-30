@@ -1,37 +1,37 @@
-package id.hasaneljabir.footballzone.fragment.player
+package id.hasaneljabir.footballzone.activity.searchMatch
 
-import id.hasaneljabir.footballzone.entity.player.PlayerResponse
-import id.hasaneljabir.footballzone.entity.repository.player.PlayerRepositoryImplementation
+import id.hasaneljabir.footballzone.entity.SearchedEvent
+import id.hasaneljabir.footballzone.entity.repository.match.MatchRepositoryImplementation
 import id.hasaneljabir.footballzone.utils.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subscribers.ResourceSubscriber
 import java.util.*
 
-class PlayerPresenter(
-    val mView: PlayerContract.View,
-    val playersRepositoryImplementation: PlayerRepositoryImplementation,
+class SearchMatchPresenter(
+    val mView: SearchMatchContract.View,
+    val matchRepositoryImplementation: MatchRepositoryImplementation,
     val schedulerProvider: SchedulerProvider
-) : PlayerContract.Presenter {
+) : SearchMatchContract.Presenter {
 
     val compositeDisposable = CompositeDisposable()
 
-    override fun getAllPlayer(teamId: String?) {
+    override fun searchMatch(query: String?) {
         mView.showLoading()
         compositeDisposable.add(
-            playersRepositoryImplementation.getAllPlayers(teamId)
+            matchRepositoryImplementation.searchMatches(query)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
-                .subscribeWith(object : ResourceSubscriber<PlayerResponse>() {
+                .subscribeWith(object : ResourceSubscriber<SearchedEvent>() {
                     override fun onComplete() {
                         mView.hideLoading()
                     }
 
-                    override fun onNext(t: PlayerResponse) {
-                        mView.displayPlayers(t.player)
+                    override fun onNext(t: SearchedEvent) {
+                        mView.displayMatch(t.event ?: Collections.emptyList())
                     }
 
                     override fun onError(t: Throwable?) {
-                        mView.displayPlayers(Collections.emptyList())
+                        mView.displayMatch(Collections.emptyList())
                         mView.hideLoading()
                     }
 
