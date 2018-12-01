@@ -1,7 +1,7 @@
 package id.hasaneljabir.footballzone.entity.repository.match
 
 import id.hasaneljabir.footballzone.entity.event.EventResponse
-import id.hasaneljabir.footballzone.entity.SearchedEvent
+import id.hasaneljabir.footballzone.entity.SearchMatch
 import io.reactivex.Flowable
 
 interface MatchRepository {
@@ -11,5 +11,5 @@ interface MatchRepository {
 
     fun getEventById(id: String): Flowable<EventResponse>
 
-    fun searchMatches(query: String?): Flowable<SearchedEvent>
+    fun searchMatches(query: String?): Flowable<SearchMatch>
 }

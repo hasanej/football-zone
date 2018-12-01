@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_search_match.*
 class SearchMatchActivity : AppCompatActivity(), SearchMatchContract.View {
 
     private var matchLists: MutableList<Event> = mutableListOf()
-    lateinit var mPresenter: SearchMatchContract.Presenter
+    lateinit var presenter: SearchMatchContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +31,8 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchContract.View {
         val service = ApiClient.getClient().create(ApiService::class.java)
         val request = MatchRepositoryImplementation(service)
         val scheduler = AppSchedulerProvider()
-        mPresenter = SearchMatchPresenter(this, request, scheduler)
-        mPresenter.searchMatch(query)
+        presenter = SearchMatchPresenter(this, request, scheduler)
+        presenter.searchMatch(query)
 
     }
 
@@ -66,7 +66,7 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchContract.View {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                mPresenter.searchMatch(newText)
+                presenter.searchMatch(newText)
                 return false
             }
         })

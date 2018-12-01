@@ -1,6 +1,6 @@
 package id.hasaneljabir.footballzone.api
 
-import id.hasaneljabir.footballzone.entity.SearchedEvent
+import id.hasaneljabir.footballzone.entity.SearchMatch
 import id.hasaneljabir.footballzone.entity.event.EventResponse
 import id.hasaneljabir.footballzone.entity.player.PlayerDetailResponse
 import id.hasaneljabir.footballzone.entity.player.PlayerResponse
@@ -18,7 +18,7 @@ interface ApiService {
     fun getUpcomingMatch(@Query("id") id: String): Flowable<EventResponse>
 
     @GET("searchevents.php")
-    fun searchMatches(@Query("e") query: String?): Flowable<SearchedEvent>
+    fun searchMatches(@Query("e") query: String?): Flowable<SearchMatch>
 
     @GET("lookupteam.php")
     fun getTeam(@Query("id") id: String): Flowable<TeamResponse>

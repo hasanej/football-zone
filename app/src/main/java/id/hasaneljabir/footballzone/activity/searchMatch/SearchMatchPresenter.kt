@@ -1,6 +1,6 @@
 package id.hasaneljabir.footballzone.activity.searchMatch
 
-import id.hasaneljabir.footballzone.entity.SearchedEvent
+import id.hasaneljabir.footballzone.entity.SearchMatch
 import id.hasaneljabir.footballzone.entity.repository.match.MatchRepositoryImplementation
 import id.hasaneljabir.footballzone.utils.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
@@ -21,12 +21,12 @@ class SearchMatchPresenter(
             matchRepositoryImplementation.searchMatches(query)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
-                .subscribeWith(object : ResourceSubscriber<SearchedEvent>() {
+                .subscribeWith(object : ResourceSubscriber<SearchMatch>() {
                     override fun onComplete() {
                         mView.hideLoading()
                     }
 
-                    override fun onNext(t: SearchedEvent) {
+                    override fun onNext(t: SearchMatch) {
                         mView.displayMatch(t.event ?: Collections.emptyList())
                     }
 
