@@ -15,7 +15,7 @@ interface ApiService {
     fun getLastmatch(@Query("id") id: String): Flowable<EventResponse>
 
     @GET("eventsnextleague.php")
-    fun getUpcomingMatch(@Query("id") id: String): Flowable<EventResponse>
+    fun getNextMatch(@Query("id") id: String): Flowable<EventResponse>
 
     @GET("searchevents.php")
     fun searchMatches(@Query("e") query: String?): Flowable<SearchMatch>
