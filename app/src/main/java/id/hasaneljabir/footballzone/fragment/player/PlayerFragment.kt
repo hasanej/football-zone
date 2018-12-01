@@ -2,7 +2,7 @@ package id.hasaneljabir.footballzone.fragment.player
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +36,7 @@ class PlayerFragment : Fragment(), PlayerContract.View {
     override fun displayPlayers(playerList: List<Player>) {
         listPlayer.clear()
         listPlayer.addAll(playerList)
-        val layoutManager = GridLayoutManager(context, 3)
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvPlayer.layoutManager = layoutManager
         rvPlayer.adapter = PlayerAdapter(listPlayer, context)
     }
