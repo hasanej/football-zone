@@ -19,7 +19,7 @@ class LastMatchPresenter(
     override fun getFootballMatchData(leagueName: String) {
         view.showLoading()
         compositeDisposable.add(
-            matchRepositoryImplementation.getFootballMatch(leagueName)
+            matchRepositoryImplementation.getLastMatch(leagueName)
                 .observeOn(scheduler.ui())
                 .subscribeOn(scheduler.io())
                 .subscribeWith(object : ResourceSubscriber<EventResponse>() {
