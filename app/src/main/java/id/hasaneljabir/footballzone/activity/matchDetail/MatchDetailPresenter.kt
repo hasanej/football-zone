@@ -12,6 +12,8 @@ class MatchDetailPresenter(
     val view: MatchDetailContract.View, val teamRepositoryImplementation: TeamRepositoryImplementation,
     val localRepositoryImplementation: LocalRepositoryImplementation
 ) : MatchDetailContract.Presenter {
+    val compositeDisposable = CompositeDisposable()
+
     override fun deleteMatch(id: String) {
         localRepositoryImplementation.deleteData(id)
     }
@@ -45,8 +47,6 @@ class MatchDetailPresenter(
         )
     }
 
-    val compositeDisposable = CompositeDisposable()
-
     override fun getTeamsBadgeAway(id: String) {
         compositeDisposable.add(
             teamRepositoryImplementation.getTeamsDetail(id)
@@ -58,7 +58,7 @@ class MatchDetailPresenter(
                     }
 
                     override fun onNext(t: TeamResponse) {
-                        view.displayTeamBadgeHome(t.teams[0])
+                        view.displayTeamBadgeAway(t.teams[0])
                     }
 
                     override fun onError(t: Throwable?) {

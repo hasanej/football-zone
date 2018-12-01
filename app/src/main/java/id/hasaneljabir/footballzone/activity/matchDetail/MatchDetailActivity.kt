@@ -25,6 +25,7 @@ class MatchDetailActivity : AppCompatActivity(),
     private var menuItem: Menu? = null
 
     lateinit var event: Event
+    lateinit var presenterEventDetail: MatchDetailPresenter
 
     override fun displayTeamBadgeAway(team: Team) {
         Glide.with(applicationContext)
@@ -40,17 +41,13 @@ class MatchDetailActivity : AppCompatActivity(),
             .into(imgHome)
     }
 
-    lateinit var presenterEventDetail: MatchDetailPresenter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         val service = ApiClient.getClient().create(ApiService::class.java)
         val request = TeamRepositoryImplementation(service)
-        val localRepo =
-            LocalRepositoryImplementation(applicationContext)
-        presenterEventDetail =
-                MatchDetailPresenter(this, request, localRepo)
+        val localRepo = LocalRepositoryImplementation(applicationContext)
+        presenterEventDetail = MatchDetailPresenter(this, request, localRepo)
 
         event = intent.getParcelableExtra("match")
         presenterEventDetail.getTeamsBadgeAway(event.idAwayTeam)
