@@ -10,7 +10,7 @@ import com.bumptech.glide.request.RequestOptions
 
 import id.hasaneljabir.footballzone.R
 import id.hasaneljabir.footballzone.entity.team.Team
-import kotlinx.android.synthetic.main.fragment_team_ovw.*
+import kotlinx.android.synthetic.main.fragment_team_overview.*
 
 class TeamOverviewFragment : Fragment() {
 
@@ -18,7 +18,7 @@ class TeamOverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_team_ovw, container, false)
+        return inflater.inflate(R.layout.fragment_team_overview, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class TeamOverviewFragment : Fragment() {
     fun initView(teamInfo: Team?) {
         Glide.with(this)
             .load(teamInfo?.strTeamBadge)
-            .apply(RequestOptions().placeholder(R.drawable.ic_hourglass_empty_black_24dp))
+            .apply(RequestOptions().placeholder(R.drawable.ic_no_image))
             .into(imgBadge)
 
         teamName.text = teamInfo?.strTeam

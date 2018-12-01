@@ -10,14 +10,14 @@ import com.bumptech.glide.request.RequestOptions
 import id.hasaneljabir.footballzone.R
 import id.hasaneljabir.footballzone.entity.team.Team
 import id.hasaneljabir.footballzone.activity.teamDetail.TeamDetailActivity
-import kotlinx.android.synthetic.main.item_teams.view.*
+import kotlinx.android.synthetic.main.item_team.view.*
 import org.jetbrains.anko.startActivity
 
 class TeamAdapter(val teamList: List<Team>, val context: Context?) :
     RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
-        return TeamViewHolder(LayoutInflater.from(context).inflate(R.layout.item_teams, parent, false))
+        return TeamViewHolder(LayoutInflater.from(context).inflate(R.layout.item_team, parent, false))
     }
 
     override fun getItemCount() = teamList.size
@@ -32,7 +32,7 @@ class TeamAdapter(val teamList: List<Team>, val context: Context?) :
             itemView.tvTeam.text = team.strTeam
             Glide.with(itemView.context)
                 .load(team.strTeamBadge)
-                .apply(RequestOptions().placeholder(R.drawable.ic_hourglass_empty_black_24dp))
+                .apply(RequestOptions().placeholder(R.drawable.ic_no_image))
                 .into(itemView.imgTeam)
 
             itemView.setOnClickListener {

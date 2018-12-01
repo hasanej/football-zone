@@ -16,7 +16,7 @@ import id.hasaneljabir.footballzone.entity.team.Team
 import id.hasaneljabir.footballzone.extensions.hide
 import id.hasaneljabir.footballzone.extensions.show
 import id.hasaneljabir.footballzone.utils.AppSchedulerProvider
-import kotlinx.android.synthetic.main.fragment_teams.*
+import kotlinx.android.synthetic.main.fragment_team.*
 
 class TeamFragment : Fragment(), TeamContract.View {
 
@@ -48,7 +48,7 @@ class TeamFragment : Fragment(), TeamContract.View {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_teams, container, false)
+        return inflater.inflate(R.layout.fragment_team, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

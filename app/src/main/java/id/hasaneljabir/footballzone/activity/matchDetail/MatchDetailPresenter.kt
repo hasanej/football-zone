@@ -1,4 +1,4 @@
-package id.hasaneljabir.footballzone.activity.eventDetail
+package id.hasaneljabir.footballzone.activity.matchDetail
 
 import id.hasaneljabir.footballzone.entity.repository.local.LocalRepositoryImplementation
 import id.hasaneljabir.footballzone.entity.repository.team.TeamRepositoryImplementation
@@ -8,10 +8,10 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.ResourceSubscriber
 
-class EventDetailPresenter(
-    val view: EventDetailContract.View, val teamRepositoryImplementation: TeamRepositoryImplementation,
+class MatchDetailPresenter(
+    val view: MatchDetailContract.View, val teamRepositoryImplementation: TeamRepositoryImplementation,
     val localRepositoryImplementation: LocalRepositoryImplementation
-) : EventDetailContract.Presenter {
+) : MatchDetailContract.Presenter {
     override fun deleteMatch(id: String) {
         localRepositoryImplementation.deleteData(id)
     }

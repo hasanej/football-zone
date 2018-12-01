@@ -69,7 +69,7 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailContract.View {
                 .load(team.strTeamFanart1)
                 .apply(
                     RequestOptions().placeholder(
-                        R.drawable.ic_hourglass_empty_black_24dp
+                        R.drawable.ic_no_image
                     )
                 )
                 .apply(RequestOptions().override(220, 160))
@@ -77,7 +77,7 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailContract.View {
         } else {
             Glide.with(applicationContext)
                 .load(team.strTeamBadge)
-                .apply(RequestOptions().placeholder(R.drawable.ic_hourglass_empty_black_24dp))
+                .apply(RequestOptions().placeholder(R.drawable.ic_no_image))
                 .apply(RequestOptions().override(120, 140))
                 .into(imageTeam)
         }

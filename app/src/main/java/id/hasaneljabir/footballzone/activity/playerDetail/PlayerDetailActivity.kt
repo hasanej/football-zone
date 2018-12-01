@@ -45,7 +45,7 @@ class PlayerDetailActivity : AppCompatActivity(), PayerDetailContract.View {
         loadBanner(player)
         Glide.with(applicationContext)
             .load(player.strCutout)
-            .apply(RequestOptions().placeholder(R.drawable.ic_hourglass_empty_black_24dp))
+            .apply(RequestOptions().placeholder(R.drawable.ic_no_image))
             .into(imgPlayer)
 
 
@@ -59,12 +59,12 @@ class PlayerDetailActivity : AppCompatActivity(), PayerDetailContract.View {
         if (!player.strFanart1.equals(null)) {
             Glide.with(applicationContext)
                 .load(player.strFanart1)
-                .apply(RequestOptions().placeholder(R.drawable.ic_hourglass_empty_black_24dp))
+                .apply(RequestOptions().placeholder(R.drawable.ic_no_image))
                 .into(imageBannerPlayer)
         } else {
             Glide.with(applicationContext)
                 .load(player.strThumb)
-                .apply(RequestOptions().placeholder(R.drawable.ic_hourglass_empty_black_24dp))
+                .apply(RequestOptions().placeholder(R.drawable.ic_no_image))
                 .into(imageBannerPlayer)
         }
     }

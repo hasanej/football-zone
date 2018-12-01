@@ -1,9 +1,9 @@
-package id.hasaneljabir.footballzone.activity.eventDetail
+package id.hasaneljabir.footballzone.activity.matchDetail
 
 import id.hasaneljabir.footballzone.entity.db.FavoriteEvent
 import id.hasaneljabir.footballzone.entity.team.Team
 
-interface EventDetailContract {
+interface MatchDetailContract {
 
     interface View {
         fun displayTeamBadgeHome(team: Team)
