@@ -1,7 +1,7 @@
 package id.hasaneljabir.footballzone.fragment.player
 
 import id.hasaneljabir.footballzone.entity.player.PlayerResponse
-import id.hasaneljabir.footballzone.entity.repository.PlayersRepositoryImpl
+import id.hasaneljabir.footballzone.entity.repository.player.PlayerRepositoryImplementation
 import id.hasaneljabir.footballzone.utils.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subscribers.ResourceSubscriber
@@ -9,7 +9,7 @@ import java.util.*
 
 class PlayerPresenter(
     val mView: PlayerContract.View,
-    val playersRepositoryImpl: PlayersRepositoryImpl,
+    val playersRepositoryImplementation: PlayerRepositoryImplementation,
     val schedulerProvider: SchedulerProvider
 ) : PlayerContract.Presenter {
 
@@ -18,7 +18,7 @@ class PlayerPresenter(
     override fun getAllPlayer(teamId: String?) {
         mView.showLoading()
         compositeDisposable.add(
-            playersRepositoryImpl.getAllPlayers(teamId)
+            playersRepositoryImplementation.getAllPlayers(teamId)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribeWith(object : ResourceSubscriber<PlayerResponse>() {

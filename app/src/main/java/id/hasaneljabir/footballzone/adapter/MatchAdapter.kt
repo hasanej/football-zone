@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import id.hasaneljabir.footballzone.R
-import id.hasaneljabir.footballzone.activity.eventDetail.EventDetailActivity
+import id.hasaneljabir.footballzone.activity.matchDetail.MatchDetailActivity
 import id.hasaneljabir.footballzone.entity.event.Event
 import id.hasaneljabir.footballzone.utils.DateHelper
 import kotlinx.android.synthetic.main.item_match.view.*
@@ -29,15 +29,17 @@ class MatchAdapter(val eventList: List<Event>, val context: Context?) :
         fun bind(event: Event) {
             if (event.intHomeScore == null) {
                 itemView.tvDate.setTextColor(itemView.context.resources.getColor(R.color.colorDateNextMatch))
+                itemView.tvTime.setTextColor(itemView.context.resources.getColor(R.color.colorDateNextMatch))
             }
             itemView.tvDate.text = event.dateEvent?.let { DateHelper.formatDateToMatch(it) }
-            itemView.tvNameHome.text = event.strHomeTeam
-            itemView.tvScoreHome.text = event.intHomeScore
-            itemView.tvNameAway.text = event.strAwayTeam
-            itemView.tvScoreAway.text = event.intAwayScore
+            itemView.tvTime.text = event.strTime.take(5)
+            itemView.tvHomeName.text = event.strHomeTeam
+            itemView.tvHomeScore.text = event.intHomeScore
+            itemView.tvAwayName.text = event.strAwayTeam
+            itemView.tvAwayScore.text = event.intAwayScore
 
             itemView.setOnClickListener {
-                itemView.context.startActivity<EventDetailActivity>("match" to event)
+                itemView.context.startActivity<MatchDetailActivity>("match" to event)
             }
         }
     }

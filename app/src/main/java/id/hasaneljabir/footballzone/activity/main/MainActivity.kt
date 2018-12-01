@@ -3,9 +3,9 @@ package id.hasaneljabir.footballzone.activity.main
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import id.hasaneljabir.footballzone.R
-import id.hasaneljabir.footballzone.feature.FavoriteFragment
+import id.hasaneljabir.footballzone.fragment.favorite.FavoriteFragment
 import id.hasaneljabir.footballzone.fragment.match.MatchFragment
-import id.hasaneljabir.footballzone.feature.team.TeamsFragment
+import id.hasaneljabir.footballzone.fragment.team.TeamFragment
 import kotlinx.android.synthetic.main.bottom_nav_view.*
 import kotlinx.android.synthetic.main.home_activity.*
 
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.main_container, TeamsFragment(), TeamsFragment::class.java.simpleName)
+                .replace(R.id.main_container, TeamFragment(), TeamFragment::class.java.simpleName)
                 .commit()
         }
     }
@@ -57,7 +57,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.main_container, FavoriteFragment(), FavoriteFragment::class.java.simpleName)
+                .replace(R.id.main_container,
+                    FavoriteFragment(), FavoriteFragment::class.java.simpleName)
                 .commit()
         }
     }

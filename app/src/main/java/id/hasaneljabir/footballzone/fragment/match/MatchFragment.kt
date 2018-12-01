@@ -8,7 +8,7 @@ import android.support.v7.widget.SearchView
 import android.view.*
 import id.hasaneljabir.footballzone.R
 import id.hasaneljabir.footballzone.adapter.ViewPagerAdapter
-import id.hasaneljabir.footballzone.feature.searchmatches.SearchMatchActivity
+import id.hasaneljabir.footballzone.activity.searchMatch.SearchMatchActivity
 import id.hasaneljabir.footballzone.fragment.match.lastMatch.LastMatchFragment
 import id.hasaneljabir.footballzone.fragment.match.nextMatch.NextMatchFragment;
 import org.jetbrains.anko.startActivity
@@ -19,7 +19,7 @@ class MatchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_matches, container, false)
+        return inflater.inflate(R.layout.fragment_match, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
