@@ -7,7 +7,6 @@ interface TeamContract {
         fun displayTeams(teamList: List<Team>)
         fun hideLoading()
         fun showLoading()
-
     }
 
     interface Presenter {

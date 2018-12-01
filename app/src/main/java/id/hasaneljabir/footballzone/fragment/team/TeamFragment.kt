@@ -2,7 +2,7 @@ package id.hasaneljabir.footballzone.fragment.team
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.*
 import android.widget.AdapterView
@@ -21,14 +21,14 @@ import kotlinx.android.synthetic.main.fragment_team.*
 class TeamFragment : Fragment(), TeamContract.View {
 
     lateinit var leagueName: String
-    lateinit var mPresenter: TeamContract.Presenter
+    lateinit var presenter: TeamContract.Presenter
 
     private var teamLists: MutableList<Team> = mutableListOf()
 
     override fun displayTeams(teamList: List<Team>) {
         teamLists.clear()
         teamLists.addAll(teamList)
-        val layoutManager = GridLayoutManager(context, 3)
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvTeam.layoutManager = layoutManager
         rvTeam.adapter = TeamAdapter(teamLists, context)
     }
@@ -57,8 +57,8 @@ class TeamFragment : Fragment(), TeamContract.View {
         val request = TeamRepositoryImplementation(service)
         val scheduler = AppSchedulerProvider()
         setHasOptionsMenu(true)
-        mPresenter = TeamPresenter(this, request, scheduler)
-        mPresenter.getTeamData("4328")
+        presenter = TeamPresenter(this, request, scheduler)
+        presenter.getTeamData("4328")
         val spinnerItems = resources.getStringArray(R.array.league)
         val spinnerAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
         spinnerTeam.adapter = spinnerAdapter
@@ -66,13 +66,13 @@ class TeamFragment : Fragment(), TeamContract.View {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 leagueName = spinnerTeam.selectedItem.toString()
                 when (leagueName) {
-                    "English Premier League" -> mPresenter.getTeamData("4328")
-                    "German Bundesliga" -> mPresenter.getTeamData("4331")
-                    "Italian Serie A" -> mPresenter.getTeamData("4332")
-                    "French Ligue 1" -> mPresenter.getTeamData("4334")
-                    "Spanish La Liga" -> mPresenter.getTeamData("4335")
-                    "Netherlands Eredivisie" -> mPresenter.getTeamData("4337")
-                    else -> mPresenter.getTeamData("4328")
+                    "English Premier League" -> presenter.getTeamData("4328")
+                    "German Bundesliga" -> presenter.getTeamData("4331")
+                    "Italian Serie A" -> presenter.getTeamData("4332")
+                    "French Ligue 1" -> presenter.getTeamData("4334")
+                    "Spanish La Liga" -> presenter.getTeamData("4335")
+                    "Netherlands Eredivisie" -> presenter.getTeamData("4337")
+                    else -> presenter.getTeamData("4328")
                 }
             }
 
@@ -82,7 +82,7 @@ class TeamFragment : Fragment(), TeamContract.View {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mPresenter.onDestroy()
+        presenter.onDestroy()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -98,14 +98,14 @@ class TeamFragment : Fragment(), TeamContract.View {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                mPresenter.searchTeam(newText)
+                presenter.searchTeam(newText)
                 return false
             }
         })
 
         searchView?.setOnCloseListener(object : SearchView.OnCloseListener {
             override fun onClose(): Boolean {
-                mPresenter.getTeamData("4328")
+                presenter.getTeamData("4328")
                 return true
             }
         })

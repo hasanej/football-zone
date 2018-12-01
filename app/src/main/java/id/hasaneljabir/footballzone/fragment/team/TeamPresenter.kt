@@ -8,53 +8,52 @@ import io.reactivex.subscribers.ResourceSubscriber
 import java.util.*
 
 class TeamPresenter(
-    val mView: TeamContract.View, val teamRepositoryImplementation: TeamRepositoryImplementation,
+    val view: TeamContract.View, val teamRepositoryImplementation: TeamRepositoryImplementation,
     val scheduler: SchedulerProvider
 ) : TeamContract.Presenter {
+    val compositeDisposable = CompositeDisposable()
 
     override fun searchTeam(teamName: String) {
-//        mView.showLoading()
         compositeDisposable.add(
             teamRepositoryImplementation.getTeamBySearch(teamName)
                 .observeOn(scheduler.ui())
                 .subscribeOn(scheduler.io())
                 .subscribeWith(object : ResourceSubscriber<TeamResponse>() {
                     override fun onComplete() {
-                        mView.hideLoading()
+                        view.hideLoading()
                     }
 
                     override fun onNext(t: TeamResponse) {
-                        mView.displayTeams(t.teams ?: Collections.emptyList())
+                        view.displayTeams(t.teams)
                     }
 
                     override fun onError(t: Throwable?) {
-                        mView.displayTeams(Collections.emptyList())
-                        mView.hideLoading()
+                        view.displayTeams(Collections.emptyList())
+                        view.hideLoading()
                     }
 
                 })
         )
     }
 
-    val compositeDisposable = CompositeDisposable()
     override fun getTeamData(leagueName: String) {
-        mView.showLoading()
+        view.showLoading()
         compositeDisposable.add(
             teamRepositoryImplementation.getAllTeam(leagueName)
                 .observeOn(scheduler.ui())
                 .subscribeOn(scheduler.io())
                 .subscribeWith(object : ResourceSubscriber<TeamResponse>() {
                     override fun onComplete() {
-                        mView.hideLoading()
+                        view.hideLoading()
                     }
 
                     override fun onNext(t: TeamResponse) {
-                        mView.displayTeams(t.teams ?: Collections.emptyList())
+                        view.displayTeams(t.teams)
                     }
 
                     override fun onError(t: Throwable?) {
-                        mView.displayTeams(Collections.emptyList())
-                        mView.hideLoading()
+                        view.displayTeams(Collections.emptyList())
+                        view.hideLoading()
                     }
 
                 })
@@ -64,5 +63,4 @@ class TeamPresenter(
     override fun onDestroy() {
         compositeDisposable.dispose()
     }
-
 }

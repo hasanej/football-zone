@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import id.hasaneljabir.footballzone.R
-import id.hasaneljabir.footballzone.entity.team.Team
 import id.hasaneljabir.footballzone.activity.teamDetail.TeamDetailActivity
+import id.hasaneljabir.footballzone.entity.team.Team
 import kotlinx.android.synthetic.main.item_team.view.*
 import org.jetbrains.anko.startActivity
 
@@ -26,7 +26,6 @@ class TeamAdapter(val teamList: List<Team>, val context: Context?) :
         holder.bind(teamList[position])
     }
 
-
     inner class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(team: Team) {
             itemView.tvTeam.text = team.strTeam
@@ -39,6 +38,5 @@ class TeamAdapter(val teamList: List<Team>, val context: Context?) :
                 itemView.context.startActivity<TeamDetailActivity>("team" to team)
             }
         }
-
     }
 }
