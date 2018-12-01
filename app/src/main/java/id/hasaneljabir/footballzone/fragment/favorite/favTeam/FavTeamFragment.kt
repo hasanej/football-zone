@@ -2,7 +2,7 @@ package id.hasaneljabir.footballzone.fragment.favorite.favTeam
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +48,7 @@ class FavTeamFragment : Fragment(), FavTeamContract.View {
     override fun displayTeams(teamList: List<Team>) {
         teamLists.clear()
         teamLists.addAll(teamList)
-        val layoutManager = GridLayoutManager(context, 3)
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvTeam.layoutManager = layoutManager
         rvTeam.adapter = TeamAdapter(teamLists, context)
     }

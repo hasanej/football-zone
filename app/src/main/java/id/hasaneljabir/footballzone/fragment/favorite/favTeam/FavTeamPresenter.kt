@@ -10,7 +10,7 @@ import io.reactivex.subscribers.ResourceSubscriber
 import java.util.*
 
 class FavTeamPresenter(
-    val mView: FavTeamContract.View,
+    val view: FavTeamContract.View,
     val localRepositoryImplementation: LocalRepositoryImplementation,
     val teamRepositoryImplementation: TeamRepositoryImplementation,
     val scheduler: SchedulerProvider
@@ -19,7 +19,7 @@ class FavTeamPresenter(
     val compositeDisposable = CompositeDisposable()
 
     override fun getTeamData() {
-        mView.showLoading()
+        view.showLoading()
         val teamList = localRepositoryImplementation.getTeamFromDb()
         var teamLists: MutableList<Team> = mutableListOf()
         for (fav in teamList) {
@@ -29,19 +29,19 @@ class FavTeamPresenter(
                     .subscribeOn(scheduler.io())
                     .subscribeWith(object : ResourceSubscriber<TeamResponse>() {
                         override fun onComplete() {
-                            mView.hideLoading()
-                            mView.hideSwipeRefresh()
+                            view.hideLoading()
+                            view.hideSwipeRefresh()
                         }
 
                         override fun onNext(t: TeamResponse) {
                             teamLists.add(t.teams[0])
-                            mView.displayTeams(teamLists)
+                            view.displayTeams(teamLists)
                         }
 
                         override fun onError(t: Throwable?) {
-                            mView.hideLoading()
-                            mView.hideSwipeRefresh()
-                            mView.displayTeams(Collections.emptyList())
+                            view.hideLoading()
+                            view.hideSwipeRefresh()
+                            view.displayTeams(Collections.emptyList())
                         }
 
                     })
@@ -49,9 +49,9 @@ class FavTeamPresenter(
         }
 
         if (teamList.isEmpty()) {
-            mView.hideLoading()
-            mView.hideSwipeRefresh()
-            mView.displayTeams(teamLists)
+            view.hideLoading()
+            view.hideSwipeRefresh()
+            view.displayTeams(teamLists)
         }
     }
 
