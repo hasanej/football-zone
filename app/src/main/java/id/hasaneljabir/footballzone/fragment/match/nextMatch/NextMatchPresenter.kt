@@ -9,7 +9,7 @@ import io.reactivex.subscribers.ResourceSubscriber
 import java.util.*
 
 class NextMatchPresenter(
-    val mView: MatchContract.View,
+    val view: MatchContract.View,
     val matchRepositoryImplementation: MatchRepositoryImplementation,
     val scheduler: SchedulerProvider
 ) : MatchContract.Presenter {
@@ -21,23 +21,23 @@ class NextMatchPresenter(
     val compositeDisposable = CompositeDisposable()
 
     override fun getFootballMatchData(leagueName: String) {
-        mView.showLoading()
+        view.showLoading()
         compositeDisposable.add(
-            matchRepositoryImplementation.getUpcomingMatch(leagueName)
+            matchRepositoryImplementation.getNextMatch(leagueName)
                 .observeOn(scheduler.ui())
                 .subscribeOn(scheduler.io())
                 .subscribeWith(object : ResourceSubscriber<EventResponse>() {
                     override fun onComplete() {
-                        mView.hideLoading()
+                        view.hideLoading()
                     }
 
                     override fun onNext(t: EventResponse) {
-                        mView.displayFootballMatch(t.event)
+                        view.displayFootballMatch(t.event)
                     }
 
                     override fun onError(t: Throwable?) {
-                        mView.hideLoading()
-                        mView.displayFootballMatch(Collections.emptyList())
+                        view.hideLoading()
+                        view.displayFootballMatch(Collections.emptyList())
                     }
 
                 })
