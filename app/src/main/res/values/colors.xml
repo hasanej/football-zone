@@ -6,7 +6,5 @@
     <color name="colorSecondaryText">#d9d6d6</color>
     <color name="colorDateLastMatch">#C0392B</color>
     <color name="colorDateNextMatch">#27AE60</color>
-    <color name="colorSelectedText">#757575</color>
     <color name="line_separator">#bfbcbc</color>
-    <color name="white">#fff</color>
 </resources>
